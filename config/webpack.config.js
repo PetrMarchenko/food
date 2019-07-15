@@ -274,6 +274,7 @@ module.exports = function(webpackEnv) {
         'react-native': 'react-native-web',
         components: path.resolve(__dirname, '../src/components/'),
         constants: path.resolve(__dirname, '../src/constants/'),
+        store: path.resolve(__dirname, '../src/store/'),
 
       },
       plugins: [
