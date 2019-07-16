@@ -10,12 +10,12 @@ import {
 } from 'constants/routes';
 
 export default () => (
-    <container>
+    <div>
         <Header/>
         <Switch>
             <Route exact path={ HOME_PAGE } component={ HomePage }/>
             <Route exact path={ FOOD_PAGE } component={ FoodPage }/>
         </Switch>
         <Footer/>
-    </container>
+    </div>
 );

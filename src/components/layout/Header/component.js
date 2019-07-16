@@ -20,7 +20,7 @@ function Header() {
     const classes = useStyles();
 
     return (
-        <container>
+        <div>
             <CssBaseline />
             <AppBar position="relative">
                 <Toolbar>
@@ -37,7 +37,7 @@ function Header() {
                     <li><Link to={FOOD_PAGE}>Roster</Link></li>
                 </ul>
             </nav>
-        </container>
+        </div>
     );
 }
 
