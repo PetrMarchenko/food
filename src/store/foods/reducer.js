@@ -5,7 +5,10 @@ import {
 const INIT = {
   foods: [
       {id: 1, name: 'Food1'},
-      {id: 2, name: 'Food2'}
+      {id: 2, name: 'Food2'},
+      {id: 3, name: 'Food2'},
+      {id: 4, name: 'Food2'},
+      {id: 5, name: 'Food2'},
   ]
 };
 
