@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import * as PropTypes from 'prop-types';
 
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from './cardMedia';
-// import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-import { useStyles } from './useStyles';
+import {Card} from './stylesComponent';
+import {Container} from './stylesComponent';
+import {CardContent} from './stylesComponent';
+import {CardMedia} from './stylesComponent';
+
 
 
 export default class FoodPage extends Component {
@@ -25,8 +24,6 @@ export default class FoodPage extends Component {
         super(props);
         this.createFood = this.createFood.bind(this);
         this.nameFood = React.createRef();
-
-
     }
 
     createFood = () => {
@@ -38,21 +35,21 @@ export default class FoodPage extends Component {
 
     render() {
         const { foods } = this.props;
-        const classes = useStyles;
+        // const classes = useStyles;
 
         return (
                 <main>
-                    <Container className={classes.cardGrid} maxWidth="md">
+                    <Container maxWidth="md">
                         {/* End hero unit */}
                         <Grid container spacing={4}>
                             {foods.map(card => (
                                 <Grid item key={card.id} xs={12} sm={6} md={4}>
-                                    <Card className={classes.card}>
+                                    <Card>
                                         <CardMedia
                                             image="/image.jpg"
                                             title="Image title"
                                         />
-                                        <CardContent className={classes.cardContent}>
+                                        <CardContent>
                                             <Typography gutterBottom variant="h5" component="h2">
                                                 Heading
                                             </Typography>
@@ -77,15 +74,6 @@ export default class FoodPage extends Component {
         );
     }
 }
-
-
-
-
-
-
-
-
-
 
 
 // {/*Food Page*/}
