@@ -1,6 +1,7 @@
 import {
     ADD_FOOD,
 } from './actions';
+import {LOAD_FOOD} from "store/foods/actions";
 
 const INIT = {
   foods: [
@@ -27,6 +28,12 @@ export default function foodsReducer(state = INIT, action) {
                     ...state.foods,
                     payload
                 ]
+            };
+        case LOAD_FOOD:
+            console.log(payload);
+            return {
+                ...state,
+                foods: payload
             };
         default:
             return state;
