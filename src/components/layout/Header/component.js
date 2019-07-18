@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import {
     HOME_PAGE,
     FOOD_PAGE,
+    CART_PAGE
 } from 'constants/routes'
 
 import AppBar from '@material-ui/core/AppBar';
@@ -14,6 +15,10 @@ import { useStyles } from './useStyles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import history from 'src/history';
+
+
+import Badge from '@material-ui/core/Badge';
+import Button from '@material-ui/core/Button';
 
 
 
@@ -39,6 +44,16 @@ function Header() {
                     >
                         <BottomNavigationAction className={classes.colorIcon} value={HOME_PAGE} label="Home" icon={<HomeIcon />} />
                         <BottomNavigationAction className={classes.colorIcon} value={FOOD_PAGE} label="Food" icon={<FastFoodIcon />} />
+
+                        <BottomNavigationAction
+                            className={classes.colorIcon}
+                            value={CART_PAGE}
+                            icon={
+                                <Badge color="secondary" badgeContent={4} className={classes.margin}>
+                                    <HomeIcon />
+                                </Badge>
+                            }
+                        />
                     </BottomNavigation>
                 </Toolbar>
             </AppBar>

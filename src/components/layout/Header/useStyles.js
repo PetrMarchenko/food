@@ -11,4 +11,7 @@ export const useStyles = makeStyles(theme => ({
     colorIcon: {
         color: '#fff !important;'
     },
+    margin: {
+        margin: 8,
+    },
 }));
