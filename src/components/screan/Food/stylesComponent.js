@@ -17,8 +17,8 @@ export function CardMedia(props) {
 }
 
 const StyledContainer = styled(ContainerMaterial)({
-    paddingTop: 8,
-    paddingBottom: 8,
+    paddingTop: 24,
+    paddingBottom: 24,
 });
 
 export function Container(props) {
@@ -29,7 +29,7 @@ export function Container(props) {
 
 
 const StyledCardContent = styled(CardContentMaterial)({
-    flexGrow: 1,
+    flexGrow: 3,
 });
 
 export function CardContent(props) {
