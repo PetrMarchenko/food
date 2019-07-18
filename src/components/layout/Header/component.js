@@ -8,10 +8,12 @@ import {
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import FastFoodIcon from '@material-ui/icons/Fastfood';
-import Typography from '@material-ui/core/Typography';
+import HomeIcon from '@material-ui/icons/Home';
 import CssBaseline from "@material-ui/core/CssBaseline";
-
 import { useStyles } from './useStyles';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import history from 'src/history';
 
 
 
@@ -19,24 +21,27 @@ function Header() {
 
     const classes = useStyles();
 
+    const [value, setValue] = React.useState({HOME_PAGE});
+
     return (
         <div>
             <CssBaseline />
             <AppBar position="relative">
                 <Toolbar>
-                    <FastFoodIcon className={classes.icon}/>
-                    <Typography variant="h6" color="inherit" noWrap>
-                        My food
-                    </Typography>
+                    <BottomNavigation
+                        value={value}
+                        onChange={(event, newValue) => {
+                            setValue(newValue);
+                            history.push(newValue);
+                        }}
+                        showLabels
+                        className={classes.root}
+                    >
+                        <BottomNavigationAction className={classes.colorIcon} value={HOME_PAGE} label="Home" icon={<HomeIcon />} />
+                        <BottomNavigationAction className={classes.colorIcon} value={FOOD_PAGE} label="Food" icon={<FastFoodIcon />} />
+                    </BottomNavigation>
                 </Toolbar>
             </AppBar>
-
-            <nav>
-                <ul>
-                    <li><Link to={HOME_PAGE}>Home</Link></li>
-                    <li><Link to={FOOD_PAGE}>Roster</Link></li>
-                </ul>
-            </nav>
         </div>
     );
 }

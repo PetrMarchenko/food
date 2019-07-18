@@ -276,6 +276,7 @@ module.exports = function(webpackEnv) {
         constants: path.resolve(__dirname, '../src/constants/'),
         store: path.resolve(__dirname, '../src/store/'),
         api: path.resolve(__dirname, '../src/api/'),
+        src: path.resolve(__dirname, '../src/'),
 
       },
       plugins: [
