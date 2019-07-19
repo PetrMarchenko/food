@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import HomePage from 'components/screan/Home/component';
 import FoodPage from 'components/screan/Food';
 import CartPage from 'components/screan/Cart';
-import Header from 'components/layout/Header/component';
+import Header from 'components/layout/Header';
 import Footer from 'components/layout/Footer/component';
 import {
     HOME_PAGE,

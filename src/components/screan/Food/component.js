@@ -9,7 +9,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Icon from '@material-ui/core/Icon';
 import {useStyles} from './stylesComponent';
 
 
@@ -17,13 +16,19 @@ const FoodPage = props => {
     const classes = useStyles();
     const {
         fetchFood,
-        foods
+        foods,
+        pushToCart,
     } = props;
 
     useEffect(() => {
         fetchFood();
         console.log('fetchFood');
     }, [fetchFood]);
+
+    const addFoodToCart = (food) => {
+        console.log('addFoodToCart', food);
+        pushToCart(food);
+    };
 
     return (
         <main>
@@ -47,12 +52,13 @@ const FoodPage = props => {
                                 </CardContent>
                                 <CardActions>
                                     <Chip label={'$' + food.price} color="primary" />
-                                    <Button size="small" color="primary">
-                                        Edit
+                                    <Button
+                                        size="small"
+                                        color="primary"
+                                        onClick={ () => addFoodToCart(food) }
+                                    >
+                                        Add
                                     </Button>
-                                    <Icon className={classes.iconHover} color="primary" style={{ fontSize: 30 }}>
-                                        add_circle
-                                    </Icon>
                                 </CardActions>
                             </Card>
                         </Grid>
@@ -65,6 +71,7 @@ const FoodPage = props => {
 
 FoodPage.propTypes = {
     fetchFood: PropTypes.func,
+    pushToCart: PropTypes.func,
     foods: PropTypes.array
 };
 

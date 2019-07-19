@@ -2,16 +2,14 @@ import { takeEvery, put, call } from 'redux-saga/effects';
 import {
     CREATE_FOOD,
     FETCH_FOOD,
-    addFood,
     loadFood
 } from './actions';
-import { fetchAll } from 'api/foodList';
+import { fetchAll} from 'api/foodList';
 
 function* CreateFood(action) {
     const { payload } = action;
 
     try {
-        yield put(addFood(payload));
 
     } catch (error) {
 

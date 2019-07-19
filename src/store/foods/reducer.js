@@ -13,7 +13,7 @@ export default function foodsReducer(state = INIT, action) {
 
     switch (type) {
         case ADD_FOOD:
-            console.log(payload);
+            console.log('ADD_FOOD', payload);
             const count = state.foods.length;
             payload.id = count + 1;
 
@@ -25,7 +25,7 @@ export default function foodsReducer(state = INIT, action) {
                 ]
             };
         case LOAD_FOOD:
-            console.log(payload);
+            console.log('LOAD_FOOD', payload);
             return {
                 ...state,
                 foods: payload

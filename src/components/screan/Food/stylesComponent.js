@@ -1,13 +1,6 @@
 import {makeStyles} from "@material-ui/core";
-import {blueGrey} from "@material-ui/core/colors";
 
 export const useStyles = makeStyles(theme => ({
-    iconHover: {
-        margin: theme.spacing(2),
-        '&:hover': {
-            color: blueGrey[800],
-        },
-    },
     cardMedia: {
         height: 0,
         paddingTop: '56.25%', // 16:9

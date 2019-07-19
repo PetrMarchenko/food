@@ -3,20 +3,57 @@ import {
     PUSH_TO_CART,
     FETCH_CART,
     addToCart,
-    loadToCart
+    loadToCart,
+    deleteWithCartReducer,
+    DELETE_FOOD_WITH_CART
 } from './actions';
-import { fetchAll } from 'api/CartList';
+import { fetchAll, add } from 'api/CartList';
 
 function* pushToCart(action) {
     const { payload } = action;
 
     try {
-        yield put(addToCart(payload));
+        console.log('pushToCart Saga', payload);
+        const response = yield call(add, payload);
 
+        console.log('response', response);
+        yield put(addToCart(response));
+
+        // if (response.status >= 200 && response.status <= 200) {
+        //     yield put(addToCart(response.data));
+        // } else {
+        //
+        // }
     } catch (error) {
 
     }
 }
+
+
+
+function* deleteWithCart(action) {
+    const { payload } = action;
+
+    console.log('deleteWithCart');
+
+    try {
+        // const response = yield call(fetchAll, payload);
+        const response = payload;
+
+        console.log(response);
+        yield put(deleteWithCartReducer(response));
+
+        // if (response.status >= 200 && response.status <= 200) {
+        //     yield put(deleteWithCartReducer(response.data));
+        // } else {
+        //
+        // }
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 function* fetchCart(action) {
     const { payload } = action;
@@ -41,4 +78,5 @@ function* fetchCart(action) {
 export default function* foodsSaga() {
     yield takeEvery(PUSH_TO_CART, pushToCart);
     yield takeEvery(FETCH_CART, fetchCart);
+    yield takeEvery(DELETE_FOOD_WITH_CART, deleteWithCart);
 }

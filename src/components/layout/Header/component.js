@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
+import React, {useEffect} from 'react';
 import {
     HOME_PAGE,
     FOOD_PAGE,
@@ -17,8 +16,19 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import history from 'src/history';
 import Badge from '@material-ui/core/Badge';
+import * as PropTypes from 'prop-types';
 
-function Header() {
+const Header = props => {
+
+    const {
+        carts,
+        fetchCart
+    } = props;
+
+    useEffect(() => {
+        fetchCart();
+        console.log('useEffect fetchCart');
+    }, [fetchCart]);
 
     const classes = useStyles();
 
@@ -47,7 +57,7 @@ function Header() {
                             value={CART_PAGE}
                             label="Cart"
                             icon={
-                                <Badge color="secondary" badgeContent={4} >
+                                <Badge color="secondary" badgeContent={carts.length} >
                                     <ShoppingCartIcon />
                                 </Badge>
                             }
@@ -58,5 +68,11 @@ function Header() {
         </div>
     );
 }
+
+Header.propTypes = {
+    fetchCart: PropTypes.func,
+    deleteWithCart: PropTypes.func,
+    carts: PropTypes.array
+};
 
 export default Header;

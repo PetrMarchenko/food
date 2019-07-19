@@ -1,53 +1,89 @@
-import React, { useState, useEffect } from 'react';
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import CardActions from "@material-ui/core/CardActions";
+import React, {useEffect } from 'react';
+
 import Chip from "@material-ui/core/Chip";
 import {useStyles} from './stylesComponent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Container from '@material-ui/core/Container';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import * as PropTypes from 'prop-types';
+
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Checkbox from '@material-ui/core/Checkbox';
+import Avatar from '@material-ui/core/Avatar';
+import Button from "@material-ui/core/Button";
+import DeleteSweep from '@material-ui/icons/DeleteSweep';
 
 const CartPage = props => {
     const classes = useStyles();
     const {
         fetchCart,
-        carts
+        carts,
+        deleteWithCart
     } = props;
 
     useEffect(() => {
         fetchCart();
-        console.log('ddsfd');
+        console.log('useEffect fetchCart');
     }, [fetchCart]);
+
+    const [checked, setChecked] = React.useState([1, 2, 3]);
+
+    const handleToggle = (value: number) => () => {
+        const currentIndex = checked.indexOf(value);
+        const newChecked = [...checked];
+
+        if (currentIndex === -1) {
+            newChecked.push(value);
+        } else {
+            newChecked.splice(currentIndex, 1);
+        }
+
+        setChecked(newChecked);
+    };
+
+    const deleteFoodWithCart = (food) => {
+        console.log('deleteFoodFromCart', food);
+        deleteWithCart(food)
+    };
 
     return (
         <Container className={classes.cardGrid} maxWidth="md">
-            <Grid container spacing={4}>
-                {carts.map(food => (
-                    <Grid item key={food.id} xs={12} sm={6} md={4}>
-                        <Card className={classes.card}>
-                            <CardMedia
-                                className={classes.cardMedia}
-                                image={food.src}
-                                title="Image title"
-                            />
-                            <CardContent className={classes.cardContent}>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    {food.name}
-                                </Typography>
-                                <Typography>
-                                    {food.description}
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <Chip label={'$' + food.price} color="primary" />
-                            </CardActions>
-                        </Card>
-                    </Grid>
-                ))}
-            </Grid>
+            <List dense className={classes.root}>
+                {carts.map(food => {
+                    const labelId = `checkbox-list-name-label-${food.id}`;
+                    return (
+                        <ListItem key={food.id} button>
+                            <ListItemAvatar>
+                                <Avatar
+                                    alt={food.name}
+                                    src={food.src}
+                                />
+                            </ListItemAvatar>
+                            <ListItemText id={labelId} primary={food.name} />
+                            <ListItemText id={labelId} >
+                              <Chip label={'$' + food.price} color="primary" />
+                            </ListItemText>
+                            <ListItemSecondaryAction>
+                                <Checkbox
+                                    edge="end"
+                                    onChange={handleToggle(food.id)}
+                                    checked={checked.indexOf(food.id) !== -1}
+                                    inputProps={{ 'aria-labelledby': labelId }}
+                                />
+                                <Button
+                                    size="small"
+                                    color="primary"
+                                    onClick={ () => deleteFoodWithCart(food)}
+                                >
+                                    <DeleteSweep/>
+                                </Button>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                    );
+                })}
+            </List>
         </Container>
     );
 };
