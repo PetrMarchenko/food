@@ -1,34 +1,35 @@
 import {
-    ADD_FOOD,
-    LOAD_FOOD
+    LOAD_TO_CART,
+    ADD_TO_CART
 } from './actions';
 
+
 const INIT = {
-  foods: [
-  ]
+    carts: [
+    ]
 };
 
 export default function foodsReducer(state = INIT, action) {
     const { type, payload } = action;
 
     switch (type) {
-        case ADD_FOOD:
+        case ADD_TO_CART:
             console.log(payload);
-            const count = state.foods.length;
+            const count = state.carts.length;
             payload.id = count + 1;
 
             return {
                 ...state,
-                foods: [
-                    ...state.foods,
+                carts: [
+                    ...state.carts,
                     payload
                 ]
             };
-        case LOAD_FOOD:
+        case LOAD_TO_CART:
             console.log(payload);
             return {
                 ...state,
-                foods: payload
+                carts: payload
             };
         default:
             return state;

@@ -15,12 +15,7 @@ import { useStyles } from './useStyles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import history from 'src/history';
-
-
 import Badge from '@material-ui/core/Badge';
-import Button from '@material-ui/core/Button';
-
-
 
 function Header() {
 
