@@ -9,6 +9,7 @@ import {
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import FastFoodIcon from '@material-ui/icons/Fastfood';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import HomeIcon from '@material-ui/icons/Home';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { useStyles } from './useStyles';
@@ -26,6 +27,7 @@ function Header() {
     return (
         <div>
             <CssBaseline />
+            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
             <AppBar position="relative">
                 <Toolbar>
                     <BottomNavigation
@@ -43,9 +45,10 @@ function Header() {
                         <BottomNavigationAction
                             className={classes.colorIcon}
                             value={CART_PAGE}
+                            label="Cart"
                             icon={
-                                <Badge color="secondary" badgeContent={4} className={classes.margin}>
-                                    <HomeIcon />
+                                <Badge color="secondary" badgeContent={4} >
+                                    <ShoppingCartIcon />
                                 </Badge>
                             }
                         />
