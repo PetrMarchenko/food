@@ -7,6 +7,12 @@ export const DELETE_FOOD_WITH_CART_REDUCER   = 'DELETE_FOOD_WITH_CART_REDUCER';
 export const LOAD_TO_CART   = 'LOAD_TO_CART';
 export const FETCH_CART   = 'FETCH_CART';
 
+export const EDIT_CART   = 'EDIT_CART';
+export const editCart = payload => ({
+    type: EDIT_CART,
+    payload
+});
+
 export const pushToCart = payload => ({
     type: PUSH_TO_CART,
     payload

@@ -15,9 +15,12 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from "@material-ui/core/Button";
 import DeleteSweep from '@material-ui/icons/DeleteSweep';
 
+import TextField from '@material-ui/core/TextField';
+
 const CartPage = props => {
     const classes = useStyles();
     const {
+        editCart,
         fetchCart,
         carts,
         deleteWithCart
@@ -29,6 +32,26 @@ const CartPage = props => {
     }, [fetchCart]);
 
     const [checked, setChecked] = React.useState([1, 2, 3]);
+
+    const [values, setValues] = React.useState({
+        food: carts,
+        name: 'Cat in the Hat',
+        count: '',
+        price: '',
+        multiline: 'Controlled',
+        currency: 'EUR',
+    });
+    const handleChange = food => event => {
+        const count = parseInt(event.target.value);
+        console.log('handleChange', count);
+        let newValue = count == event.target.value
+            ? parseInt(event.target.value)
+            : count > 0 ? count : '';
+
+        let newFood = {...food};
+        newFood.count = newValue;
+        editCart(newFood);
+    };
 
     const handleToggle = (value: number) => () => {
         const currentIndex = checked.indexOf(value);
@@ -61,9 +84,49 @@ const CartPage = props => {
                                     src={food.src}
                                 />
                             </ListItemAvatar>
-                            <ListItemText id={labelId} primary={food.name} />
+                            <ListItemText
+                                id={labelId}
+                                primary={food.name}
+                                className={classes.textField}
+                            />
                             <ListItemText id={labelId} >
-                              <Chip label={'$' + food.price} color="primary" />
+                                <TextField
+                                    id="standard-number"
+                                    label="count"
+                                    value={food.count}
+                                    onChange={handleChange(food)}
+                                    type="number"
+                                    className={classes.textField}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    margin="normal"
+                                />
+
+                                {/*<Chip label={'$' + food.price} color="primary" />*/}
+
+                                <TextField
+                                    id="standard-read-only-input"
+                                    label="total"
+                                    value={ food.price}
+                                    className={classes.textField}
+                                    margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                />
+
+                                <TextField
+                                    id="standard-read-only-input"
+                                    label="total"
+                                    value={ food.price * food.count}
+                                    className={classes.textField}
+                                    margin="normal"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                />
+
                             </ListItemText>
                             <ListItemSecondaryAction>
                                 <Checkbox
@@ -89,6 +152,7 @@ const CartPage = props => {
 };
 
 CartPage.propTypes = {
+    editCart: PropTypes.func,
     fetchCart: PropTypes.func,
     carts: PropTypes.array
 };
