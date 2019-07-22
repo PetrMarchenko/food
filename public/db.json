@@ -35,5 +35,28 @@
       "src": "/image.jpg",
       "price": 100
     }
+  ],
+  "carts" : [
+    {
+      "id": 1,
+      "name": "Бургер Энцо Феррари",
+      "src": "/image.jpg",
+      "price": 100,
+      "count": 1
+    },
+    {
+      "id": 2,
+      "name": "Бургер Энцо Феррари",
+      "src": "/image2.jpg",
+      "price": 110,
+      "count": 2
+    },
+    {
+      "id": 3,
+      "name": "Бургер Энцо Феррари",
+      "src": "/image.jpg",
+      "price": 200,
+      "count": 3
+    }
   ]
 }
