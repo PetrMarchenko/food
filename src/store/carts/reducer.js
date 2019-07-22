@@ -7,27 +7,27 @@ import {EDIT_CART} from "store/carts/actions";
 
 const INIT = {
     carts: [
-        {
-            "id": 1,
-            "name": "Бургер Энцо Феррари",
-            "src": "/image.jpg",
-            "price": 100,
-            "count": 1
-        },
-        {
-            "id": 2,
-            "name": "Бургер Феррари",
-            "src": "/image2.jpg",
-            "price": 110,
-            "count": 2
-        },
-        {
-            "id": 3,
-            "name": "Бургер Феррари",
-            "src": "/image2.jpg",
-            "price": 110,
-            "count": 2
-        }
+        // {
+        //     "id": 1,
+        //     "name": "Бургер Энцо Феррари",
+        //     "src": "/image.jpg",
+        //     "price": 100,
+        //     "count": 1
+        // },
+        // {
+        //     "id": 2,
+        //     "name": "Бургер Феррари",
+        //     "src": "/image2.jpg",
+        //     "price": 110,
+        //     "count": 2
+        // },
+        // {
+        //     "id": 3,
+        //     "name": "Бургер Феррари",
+        //     "src": "/image2.jpg",
+        //     "price": 110,
+        //     "count": 2
+        // }
     ]
 };
 
@@ -37,9 +37,6 @@ export default function foodsReducer(state = INIT, action) {
     switch (type) {
         case ADD_TO_CART:
             console.log('ADD_TO_CART', payload);
-            // const count = state.carts.length;
-            // payload.id = count + 1;
-
             return {
                 ...state,
                 carts: [
@@ -49,9 +46,6 @@ export default function foodsReducer(state = INIT, action) {
             };
         case LOAD_TO_CART:
             console.log('LOAD_TO_CART', payload);
-
-            // return state;
-
             return {
                 ...state,
                 carts: payload
@@ -70,8 +64,11 @@ export default function foodsReducer(state = INIT, action) {
 
             const newCarts = [...state.carts];
             let foundIndex = newCarts.findIndex(element => element.id === payload.id);
-            newCarts.splice(foundIndex, 1, payload);
-            console.log(newCarts);
+            // const item = {...newCarts[foundIndex], count: payload.count };
+            const item = {...newCarts[foundIndex], ...payload };
+
+            newCarts.splice(foundIndex, 1, item);
+            console.log(item);
 
             return {
                 ...state,
