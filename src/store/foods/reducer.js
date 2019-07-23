@@ -1,15 +1,10 @@
 import {
     ADD_FOOD,
+    LOAD_FOOD
 } from './actions';
-import {LOAD_FOOD} from "store/foods/actions";
 
 const INIT = {
   foods: [
-      {id: 1, name: 'Food1'},
-      {id: 2, name: 'Food2'},
-      {id: 3, name: 'Food2'},
-      {id: 4, name: 'Food2'},
-      {id: 5, name: 'Food2'},
   ]
 };
 
@@ -18,7 +13,7 @@ export default function foodsReducer(state = INIT, action) {
 
     switch (type) {
         case ADD_FOOD:
-            console.log(payload);
+            console.log('ADD_FOOD', payload);
             const count = state.foods.length;
             payload.id = count + 1;
 
@@ -30,7 +25,7 @@ export default function foodsReducer(state = INIT, action) {
                 ]
             };
         case LOAD_FOOD:
-            console.log(payload);
+            console.log('LOAD_FOOD', payload);
             return {
                 ...state,
                 foods: payload
