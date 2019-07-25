@@ -7,7 +7,7 @@ import {
     deleteWithCartReducer,
     DELETE_FOOD_WITH_CART
 } from './actions';
-import { fetchAll, add } from 'api/CartList';
+import { fetchAll, add } from 'api/cartList';
 
 function* pushToCart(action) {
     const { payload } = action;
