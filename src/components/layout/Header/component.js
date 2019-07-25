@@ -38,6 +38,7 @@ const Header = props => {
         <div>
             <CssBaseline />
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"/>
             <AppBar position="relative">
                 <Toolbar>
                     <BottomNavigation
