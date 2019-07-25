@@ -11,7 +11,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import {useStyles} from './stylesComponent';
 
-
 const FoodPage = props => {
     const classes = useStyles();
     const {

@@ -8,6 +8,7 @@ import {
     DELETE_FOOD_WITH_CART
 } from './actions';
 import { fetchAll, add } from 'api/cartList';
+import Toastify from "toastify-js";
 
 function* pushToCart(action) {
     const { payload } = action;
@@ -18,6 +19,13 @@ function* pushToCart(action) {
 
         console.log('response', response);
         yield put(addToCart(response));
+
+
+        Toastify({
+            text: "product added",
+            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+            className: "info",
+        }).showToast();
 
         // if (response.status >= 200 && response.status <= 200) {
         //     yield put(addToCart(response.data));
@@ -66,6 +74,7 @@ function* fetchCart(action) {
         console.log(response);
         if (response.status >= 200 && response.status <= 200) {
             yield put(loadToCart(response.data));
+
         } else {
 
         }
