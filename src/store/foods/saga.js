@@ -2,7 +2,9 @@ import { takeEvery, put, call } from 'redux-saga/effects';
 import {
     CREATE_FOOD,
     FETCH_FOOD,
-    loadFood
+    DELETE_FOOD,
+    loadFood,
+    deleteFoodReducer
 } from './actions';
 import { fetchAll} from 'api/foodList';
 
@@ -14,6 +16,12 @@ function* CreateFood(action) {
     } catch (error) {
 
     }
+}
+
+function* DeleteFood(action) {
+    const { payload } = action;
+
+    yield put(deleteFoodReducer(payload));
 }
 
 function* fetchFood(action) {
@@ -37,4 +45,5 @@ function* fetchFood(action) {
 export default function* foodsSaga() {
     yield takeEvery(CREATE_FOOD, CreateFood);
     yield takeEvery(FETCH_FOOD, fetchFood);
+    yield takeEvery(DELETE_FOOD, DeleteFood);
 }
