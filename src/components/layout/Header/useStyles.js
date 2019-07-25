@@ -5,7 +5,7 @@ export const useStyles = makeStyles(theme => ({
         marginRight: theme.spacing(2),
     },
     root: {
-        width: 200,
+        width: 250,
         'background-color': '#3f51b5 !important;'
     },
     colorIcon: {
