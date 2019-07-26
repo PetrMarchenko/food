@@ -7,7 +7,13 @@ import {
     deleteWithCartReducer,
     DELETE_FOOD_WITH_CART
 } from './actions';
+
 import { fetchAll, add, deleteFoodWithCart } from 'api/cartList';
+import {
+    deleteFood
+} from 'store/foods/actions';
+
+
 import Toastify from "toastify-js";
 
 function* pushToCart(action) {
@@ -29,6 +35,9 @@ function* pushToCart(action) {
             backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
             className: "info",
         }).showToast();
+
+        console.log('deleteFood', response);
+        yield put(deleteFood(response));
 
         // if (response.status >= 200 && response.status <= 200) {
         //     yield put(addToCart(response.data));

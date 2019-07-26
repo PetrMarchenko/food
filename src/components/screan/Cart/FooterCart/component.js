@@ -27,6 +27,10 @@ const FooterCart = props => {
         getTotal(carts);
     }, [getTotal]);
 
+    if (total == 0) {
+        return '';
+    }
+
     return (
         <ListItem button>
             <ListItemText >

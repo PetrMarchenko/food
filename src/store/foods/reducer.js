@@ -1,7 +1,9 @@
 import {
     ADD_FOOD,
-    LOAD_FOOD
+    LOAD_FOOD,
+    DELETE_FOOD_REDUCER
 } from './actions';
+
 
 const INIT = {
   foods: [
@@ -29,6 +31,13 @@ export default function foodsReducer(state = INIT, action) {
             return {
                 ...state,
                 foods: payload
+            };
+        case DELETE_FOOD_REDUCER:
+            console.log('DELETE_FOOD_REDUCER', payload);
+            const foods = [...state.foods.filter(obj => obj.id!= payload.id )];
+            return {
+                ...state,
+                foods: foods
             };
         default:
             return state;
