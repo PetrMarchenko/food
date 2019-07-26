@@ -21,13 +21,13 @@ function* pushToCart(action) {
 
     try {
         console.log('pushToCart Saga', payload);
-        payload.id = payload.id + 1;
+        // payload.id = payload.id + 1;
         payload.count = 1;
 
         const response = yield call(add, payload);
 
         console.log('response', response);
-        yield put(addToCart(response));
+        yield put(addToCart(response.data));
 
 
         Toastify({
@@ -37,7 +37,7 @@ function* pushToCart(action) {
         }).showToast();
 
         console.log('deleteFood', response);
-        yield put(deleteFood(response));
+        yield put(deleteFood(response.data));
 
         // if (response.status >= 200 && response.status <= 200) {
         //     yield put(addToCart(response.data));
@@ -60,11 +60,11 @@ function* deleteWithCart(action) {
         const response = yield call(deleteFoodWithCart, payload);
         // const response = payload;
 
-        // console.log("deleteWithCart", response);
+        console.log("deleteWithCart", response);
         // yield put(deleteWithCartReducer(payload));
 
         if (response.status >= 200 && response.status <= 200) {
-            yield put(deleteWithCartReducer(payload.id));
+            yield put(deleteWithCartReducer(payload));
 
             Toastify({
                 text: "product deleted",
