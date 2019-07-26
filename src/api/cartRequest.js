@@ -1,38 +1,32 @@
 import request from 'helpers/request';
 import { API_URL } from 'constants/apiconfig';
 
-const CartsFeatureList = `${ API_URL }carts`;
-const CartsFeatureAdd = `${ API_URL }cart`;
-const CartsFeatureDelete = `${ API_URL }carts/`;
+const fetchCartURL = `${ API_URL }carts`;
+const addToCartsURL = `${ API_URL }carts`;
+const editCartsURL = `${ API_URL }carts/`;
+const deleteWithCartURL = `${ API_URL }carts/`;
 
 
-export const fetchAll = payload => request({
+export const fetchCartRequest = payload => request({
     method: 'get',
-    url: CartsFeatureList,
-    // data  : JSON.stringify(payload.data),
-    // headers: {
-    //     'Authorization': `Bearer ${ payload.token }`,
-    // }
+    url: fetchCartURL,
 });
 
-export const add = payload => request({
+export const addToCartRequest = payload => request({
     method: 'post',
-    url: CartsFeatureList,
+    url: addToCartsURL,
     data: payload
-    // data  : JSON.stringify(payload.data),
-    // headers: {
-    //     'Authorization': `Bearer ${ payload.token }`,
-    // }
 });
 
-export const deleteFoodWithCart = payload => request({
+export const editCartRequest = payload => request({
+    method: 'put',
+    url: editCartsURL + payload.id,
+    data: payload
+});
+
+export const deleteWithCartRequest = payload => request({
     method: 'delete',
-    url: CartsFeatureDelete + payload.id,
-    // data: payload
-    // data  : JSON.stringify(payload.data),
-    // headers: {
-    //     'Authorization': `Bearer ${ payload.token }`,
-    // }
+    url: deleteWithCartURL + payload.id,
 });
 
 

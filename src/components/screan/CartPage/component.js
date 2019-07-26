@@ -1,11 +1,8 @@
 import React, {useEffect} from 'react';
-
 import {useStyles} from './stylesComponent';
 import Container from '@material-ui/core/Container';
 import * as PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
-
-
 import FooterCart from './FooterCart/component';
 import ItemCart from './ItemCart';
 

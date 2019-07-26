@@ -1,15 +1,19 @@
 import { connect } from 'react-redux';
 import ItemCart from './component';
-import {deleteWithCart, fetchCart, editCart} from 'store/carts/actions';
+import {
+    deleteWithCartAction,
+    fetchCartAction,
+    editCartAction
+} from 'store/carts/actions';
 
 const mapStateToProps = state => ({
     carts: state.cartsReducer.carts,
 });
 
 const mapDispatchToProps = {
-    editCart: editCart,
-    fetchCart: fetchCart,
-    deleteWithCart: deleteWithCart
+    editCart: editCartAction,
+    fetchCart: fetchCartAction,
+    deleteWithCart: deleteWithCartAction
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemCart);

@@ -1,34 +1,45 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
-import {
-    PUSH_TO_CART,
-    FETCH_CART,
-    addToCart,
-    loadToCart,
-    deleteWithCartReducer,
-    DELETE_FOOD_WITH_CART
-} from './actions';
-
-import { fetchAll, add, deleteFoodWithCart } from 'api/cartList';
-import {
-    deleteFood
-} from 'store/foods/actions';
-
-
 import Toastify from "toastify-js";
 
-function* pushToCart(action) {
+import {
+    ADD_TO_CART_ACTION,
+    FETCH_CART_ACTION,
+    DELETE_WITH_CART_ACTION,
+    EDIT_CART_ACTION,
+    addToCartStore,
+    loadCartWithStore,
+    deleteWithCartStore,
+    editCartWithStore
+} from './actions';
+
+import {
+    addToCartRequest,
+    fetchCartRequest,
+    deleteWithCartRequest,
+    editCartRequest
+} from 'api/cartRequest';
+
+import {
+    deleteFoodStore,
+} from 'store/foods/actions';
+
+function* addToCart(action) {
     const { payload } = action;
 
     try {
-        console.log('pushToCart Saga', payload);
-        // payload.id = payload.id + 1;
+        /*TODO*/
         payload.count = 1;
 
-        const response = yield call(add, payload);
+        const response = yield call(addToCartRequest, payload);
 
-        console.log('response', response);
-        yield put(addToCart(response.data));
+        console.log(response);
 
+        if (response.status >= 201 && response.status <= 201) {
+            yield put(addToCartStore(response.data));
+            yield put(deleteFoodStore(response.data));
+        } else {
+            console.log(response);
+        }
 
         Toastify({
             text: "product added",
@@ -36,43 +47,28 @@ function* pushToCart(action) {
             className: "info",
         }).showToast();
 
-        console.log('deleteFood', response);
-        yield put(deleteFood(response.data));
 
-        // if (response.status >= 200 && response.status <= 200) {
-        //     yield put(addToCart(response.data));
-        // } else {
-        //
-        // }
     } catch (error) {
-
+        console.log(error);
     }
 }
 
-
-
 function* deleteWithCart(action) {
     const { payload } = action;
-
-    console.log('deleteWithCart');
-
     try {
-        const response = yield call(deleteFoodWithCart, payload);
-        // const response = payload;
-
-        console.log("deleteWithCart", response);
-        // yield put(deleteWithCartReducer(payload));
+        const response = yield call(deleteWithCartRequest, payload);
 
         if (response.status >= 200 && response.status <= 200) {
-            yield put(deleteWithCartReducer(payload));
+            yield put(deleteWithCartStore(payload));
 
             Toastify({
                 text: "product deleted",
                 backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
                 className: "info",
             }).showToast();
-        } else {
 
+        } else {
+            console.log(response);
         }
 
     } catch (error) {
@@ -80,21 +76,39 @@ function* deleteWithCart(action) {
     }
 }
 
-
 function* fetchCart(action) {
     const { payload } = action;
 
-    console.log('fetchCart');
+    try {
+        const response = yield call(fetchCartRequest, payload);
+        if (response.status >= 200 && response.status <= 200) {
+            yield put(loadCartWithStore(response.data));
+        } else {
+            console.log(response);
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function* editCart(action) {
+    const { payload } = action;
 
     try {
-        const response = yield call(fetchAll, payload);
+        const response = yield call(editCartRequest, payload);
 
-        console.log(response);
         if (response.status >= 200 && response.status <= 200) {
-            yield put(loadToCart(response.data));
+            yield put(editCartWithStore(payload));
+
+            Toastify({
+                text: "product edited",
+                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                className: "info",
+            }).showToast();
 
         } else {
-
+            console.log(response);
         }
 
     } catch (error) {
@@ -103,7 +117,8 @@ function* fetchCart(action) {
 }
 
 export default function* foodsSaga() {
-    yield takeEvery(PUSH_TO_CART, pushToCart);
-    yield takeEvery(FETCH_CART, fetchCart);
-    yield takeEvery(DELETE_FOOD_WITH_CART, deleteWithCart);
+    yield takeEvery(ADD_TO_CART_ACTION, addToCart);
+    yield takeEvery(FETCH_CART_ACTION, fetchCart);
+    yield takeEvery(DELETE_WITH_CART_ACTION, deleteWithCart);
+    yield takeEvery(EDIT_CART_ACTION, editCart);
 }

@@ -10,7 +10,6 @@ import Button from "@material-ui/core/Button";
 import DeleteSweep from '@material-ui/icons/DeleteSweep';
 import TextField from '@material-ui/core/TextField';
 
-
 const ItemCart = props => {
     const classes = useStyles();
 
@@ -27,19 +26,15 @@ const ItemCart = props => {
             : count > 0 ? count : defaultValue;
     };
 
-    const handleChange = (id) => event => {
-        editCart({
-            "id" : id,
-            "count" : convertToInt(event.target.value, '')
-        });
+    const handleChange = (food) => event => {
+        food.count = convertToInt(event.target.value, '');
+        editCart(food);
+        /* TODO send only id and count */
+        // editCart({
+        //     "id" : food.id,
+        //     "count" : convertToInt(event.target.value, '')
+        // });
     };
-
-    // const onBlur = food => event => {
-    //     editCart({
-    //         "id" : id,
-    //         "count" : convertToInt(event.target.value, '')
-    //     });
-    // };
 
     const deleteFoodWithCart = (food) => {
         console.log('deleteFoodFromCart', food);
@@ -65,8 +60,7 @@ const ItemCart = props => {
                     id="standard-number"
                     label="count"
                     value={food.count}
-                    onChange={handleChange(food.id)}
-                    // onBlur={onBlur(food)}
+                    onChange={handleChange(food)}
                     type="number"
                     className={classes.textField}
                     InputLabelProps={{
