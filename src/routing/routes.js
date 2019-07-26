@@ -5,7 +5,7 @@ import FoodPage from 'components/screan/Food';
 import CartPage from 'components/screan/Cart';
 import Header from 'components/layout/Header';
 import Footer from 'components/layout/Footer/component';
-import LoginPage from 'components/screan/Login/component';
+import LoginPage from 'components/screan/Login';
 
 import {
     HOME_PAGE,

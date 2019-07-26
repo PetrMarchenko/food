@@ -7,7 +7,7 @@ import {
     deleteWithCartReducer,
     DELETE_FOOD_WITH_CART
 } from './actions';
-import { fetchAll, add } from 'api/cartList';
+import { fetchAll, add, deleteFoodWithCart } from 'api/cartList';
 import Toastify from "toastify-js";
 
 function* pushToCart(action) {
@@ -15,6 +15,9 @@ function* pushToCart(action) {
 
     try {
         console.log('pushToCart Saga', payload);
+        payload.id = payload.id + 1;
+        payload.count = 1;
+
         const response = yield call(add, payload);
 
         console.log('response', response);
@@ -45,17 +48,23 @@ function* deleteWithCart(action) {
     console.log('deleteWithCart');
 
     try {
-        // const response = yield call(fetchAll, payload);
-        const response = payload;
+        const response = yield call(deleteFoodWithCart, payload);
+        // const response = payload;
 
-        console.log(response);
-        yield put(deleteWithCartReducer(response));
+        // console.log("deleteWithCart", response);
+        // yield put(deleteWithCartReducer(payload));
 
-        // if (response.status >= 200 && response.status <= 200) {
-        //     yield put(deleteWithCartReducer(response.data));
-        // } else {
-        //
-        // }
+        if (response.status >= 200 && response.status <= 200) {
+            yield put(deleteWithCartReducer(payload.id));
+
+            Toastify({
+                text: "product deleted",
+                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                className: "info",
+            }).showToast();
+        } else {
+
+        }
 
     } catch (error) {
         console.log(error);

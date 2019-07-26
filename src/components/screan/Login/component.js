@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -7,51 +7,68 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import {useStyles} from './stylesComponent';
 
-function MadeWithLove() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Built with love by the '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Material-UI
-            </Link>
-            {' team.'}
-        </Typography>
-    );
-}
+import {HOME_PAGE} from 'constants/routes';
+import history from 'src/history';
 
-const useStyles = makeStyles(theme => ({
-    '@global': {
-        body: {
-            backgroundColor: theme.palette.common.white,
-        },
-    },
-    paper: {
-        marginTop: theme.spacing(8),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
-    },
-    form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
-    },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
-    },
-}));
 
-function LoginPage() {
+
+const LoginPage = props => {
+
     const classes = useStyles();
+
+    const {
+        logInAction,
+        token
+    } = props;
+
+
+    const isLogin = () =>  {
+        if (token.length > 0 ) {
+            history.push(HOME_PAGE)
+        }
+    };
+
+
+
+    useEffect(() => {
+        isLogin();
+        console.log('useEffect isLogin');
+    }, [isLogin]);
+
+
+    //import history from '../../../../history';
+
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const [rememberMe, setRememberMe] = React.useState(false);
+
+    const onChangeEmail = (event) =>  {
+        setEmail(event.target.value);
+    };
+
+    const onChangePassword = (event) =>  {
+        setPassword(event.target.value);
+    };
+
+    const onChangeRememberMe = (event) =>  {
+        setRememberMe(event.target.checked);
+    };
+
+    const onClickSubmit = (event) =>  {
+        event.preventDefault();
+        logInAction({
+            "email" : email,
+            "password": password,
+            "rememberMe": rememberMe
+        });
+        console.log("onClickSubmit", email, password, rememberMe);
+    };
+
 
     return (
         <Container component="main" maxWidth="xs">
@@ -74,6 +91,8 @@ function LoginPage() {
                         name="email"
                         autoComplete="email"
                         autoFocus
+                        value = {email}
+                        onChange = {onChangeEmail}
                     />
                     <TextField
                         variant="outlined"
@@ -85,10 +104,14 @@ function LoginPage() {
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        value = {password}
+                        onChange = {onChangePassword}
                     />
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
                         label="Remember me"
+                        value = {rememberMe}
+                        onChange = {onChangeRememberMe}
                     />
                     <Button
                         type="submit"
@@ -96,6 +119,7 @@ function LoginPage() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        onClick={ onClickSubmit }
                     >
                         Sign In
                     </Button>
