@@ -1,44 +1,47 @@
-export const ADD_TO_CART   = 'ADD_TO_CART';
-export const PUSH_TO_CART   = 'PUSH_TO_CART';
+export const ADD_TO_CART_ACTION   = 'ADD_TO_CART_ACTION';
+export const ADD_TO_CART_STORE   = 'ADD_TO_CART_STORE';
 
-export const DELETE_FOOD_WITH_CART   = 'DELETE_FOOD_WITH_CART';
-export const DELETE_FOOD_WITH_CART_REDUCER   = 'DELETE_FOOD_WITH_CART_REDUCER';
+export const FETCH_CART_ACTION   = 'FETCH_CART_ACTION';
+export const LOAD_CART_WITH_STORE   = 'LOAD_CART_WITH_STORE';
 
-export const LOAD_TO_CART   = 'LOAD_TO_CART';
-export const FETCH_CART   = 'FETCH_CART';
+export const DELETE_WITH_CART_ACTION   = 'DELETE_WITH_CART_ACTION';
+export const DELETE_WITH_CART_STORE   = 'DELETE_WITH_CART_STORE';
 
-export const EDIT_CART   = 'EDIT_CART';
-export const editCart = payload => ({
-    type: EDIT_CART,
+export const EDIT_CART_ACTION   = 'EDIT_CART_ACTION';
+export const EDIT_CART_WITH_STORE   = 'EDIT_CART_WITH_STORE';
+
+export const addToCartAction = payload => ({
+    type: ADD_TO_CART_ACTION,
+    payload
+});
+export const addToCartStore = payload => ({
+    type: ADD_TO_CART_STORE,
     payload
 });
 
-export const pushToCart = payload => ({
-    type: PUSH_TO_CART,
+export const deleteWithCartStore = payload => ({
+    type: DELETE_WITH_CART_STORE,
     payload
 });
-export const addToCart = payload => ({
-    type: ADD_TO_CART,
-    payload
-});
-
-
-export const deleteWithCart = payload => ({
-    type: DELETE_FOOD_WITH_CART,
+export const deleteWithCartAction = payload => ({
+    type: DELETE_WITH_CART_ACTION,
     payload
 });
 
-export const deleteWithCartReducer = payload => ({
-    type: DELETE_FOOD_WITH_CART_REDUCER,
+export const fetchCartAction = payload => ({
+    type: FETCH_CART_ACTION,
+    payload
+});
+export const loadCartWithStore = payload => ({
+    type: LOAD_CART_WITH_STORE,
     payload
 });
 
-
-export const fetchCart = payload => ({
-    type: FETCH_CART,
+export const editCartWithStore = payload => ({
+    type: EDIT_CART_WITH_STORE,
     payload
 });
-export const loadToCart = payload => ({
-    type: LOAD_TO_CART,
+export const editCartAction = payload => ({
+    type: EDIT_CART_ACTION,
     payload
 });

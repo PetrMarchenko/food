@@ -6,32 +6,26 @@ import {
     deleteTokenWithStore,
 } from './actions';
 
-import { logInRequest } from 'api/auth';
+import { logInRequest } from 'api/authRequest';
 
 function* LogIn(action) {
     const { payload } = action;
-
-    console.log("LogInSaga", payload);
-
     try {
         const response = yield call(logInRequest, payload);
-        console.log(response);
         if (response.status >= 200 && response.status <= 200) {
             yield put(addTokenToStore(response.data));
         } else {
-
+            console.log(response);
         }
 
     } catch (error) {
         console.log(error);
-
     }
 }
 
 function* LogOut() {
     try {
         yield put(deleteTokenWithStore());
-
     } catch (error) {
 
     }

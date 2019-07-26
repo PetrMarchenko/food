@@ -11,11 +11,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import {useStyles} from './stylesComponent';
-
 import {HOME_PAGE} from 'constants/routes';
 import history from 'src/history';
-
-
 
 const LoginPage = props => {
 
@@ -26,22 +23,16 @@ const LoginPage = props => {
         token
     } = props;
 
-
     const isLogin = () =>  {
         if (token.length > 0 ) {
             history.push(HOME_PAGE)
         }
     };
 
-
-
     useEffect(() => {
         isLogin();
-        console.log('useEffect isLogin');
     }, [isLogin]);
 
-
-    //import history from '../../../../history';
 
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -139,6 +130,6 @@ const LoginPage = props => {
             </div>
         </Container>
     );
-}
+};
 
 export default LoginPage;

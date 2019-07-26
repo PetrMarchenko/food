@@ -16,17 +16,16 @@ const FoodPage = props => {
     const {
         fetchFood,
         foods,
-        pushToCart,
+        addToCart,
     } = props;
 
     useEffect(() => {
         fetchFood();
-        console.log('fetchFood');
     }, [fetchFood]);
 
     const addFoodToCart = (food) => {
         console.log('addFoodToCart', food);
-        pushToCart(food);
+        addToCart(food);
     };
 
     return (

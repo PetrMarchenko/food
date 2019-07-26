@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import HomePage from 'components/screan/Home/component';
-import FoodPage from 'components/screan/Food';
-import CartPage from 'components/screan/Cart';
 import Header from 'components/layout/Header';
 import Footer from 'components/layout/Footer/component';
-import LoginPage from 'components/screan/Login';
+import HomePage from 'components/screan/HomePage/component';
+import FoodPage from 'components/screan/FoodPage';
+import CartPage from 'components/screan/CartPage';
+import LoginPage from 'components/screan/LoginPage';
 
 import {
     HOME_PAGE,

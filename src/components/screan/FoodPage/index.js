@@ -1,16 +1,15 @@
 import { connect } from 'react-redux';
 import FoodPage from './component';
-import { createFood, fetchFood } from 'store/foods/actions';
-import { pushToCart } from 'store/carts/actions';
+import { addToCartAction } from 'store/carts/actions';
+import { fetchFoodAction } from 'store/foods/actions';
 
 const mapStateToProps = state => ({
     foods: state.foodsReducer.foods,
 });
 
 const mapDispatchToProps = {
-    createFood: createFood,
-    fetchFood: fetchFood,
-    pushToCart: pushToCart,
+    fetchFood: fetchFoodAction,
+    addToCart: addToCartAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FoodPage);

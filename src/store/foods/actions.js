@@ -1,42 +1,25 @@
-export const ADD_FOOD   = 'ADD_FOOD';
-export const EDIT_FOOD   = 'EDIT_FOOD';
-export const CREATE_FOOD   = 'CREATE_FOOD';
-export const FETCH_FOOD   = 'FETCH_FOOD';
-export const LOAD_FOOD   = 'LOAD_FOOD';
-export const DELETE_FOOD   = 'DELETE_FOOD';
-export const DELETE_FOOD_REDUCER   = 'DELETE_FOOD_REDUCER';
+export const ADD_FOOD_ACTION   = 'ADD_FOOD_ACTION';
+export const ADD_FOOD_WITH_STORE   = 'ADD_FOOD_WITH_STORE';
 
-export const deleteFoodReducer = payload => ({
-    type: DELETE_FOOD_REDUCER,
+export const FETCH_FOOD_ACTION   = 'FETCH_FOOD_ACTION';
+export const LOAD_FOOD_TO_STORE   = 'LOAD_FOOD_TO_STORE';
+
+export const DELETE_FOOD_ACTION   = 'DELETE_FOOD_ACTION';
+export const DELETE_FOOD_WITH_STORE   = 'DELETE_FOOD_WITH_STORE';
+
+export const EDIT_FOOD_ACTION   = 'EDIT_FOOD_ACTION';
+export const EDIT_FOOD_WITH_STORE   = 'EDIT_FOOD_WITH_STORE';
+
+export const fetchFoodAction = payload => ({
+    type: FETCH_FOOD_ACTION,
     payload
 });
 
-export const deleteFood = payload => ({
-    type: DELETE_FOOD,
+export const loadFoodToStore = payload => ({
+    type: LOAD_FOOD_TO_STORE,
     payload
 });
-
-export const createFood = payload => ({
-    type: CREATE_FOOD,
-    payload
-});
-
-export const addFood = payload => ({
-    type: ADD_FOOD,
-    payload
-});
-
-export const editFood = payload => ({
-    type: EDIT_FOOD,
-    payload
-});
-
-export const fetchFood = payload => ({
-    type: FETCH_FOOD,
-    payload
-});
-
-export const loadFood = payload => ({
-    type: LOAD_FOOD,
+export const deleteFoodStore = payload => ({
+    type: DELETE_FOOD_WITH_STORE,
     payload
 });
