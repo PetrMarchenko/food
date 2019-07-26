@@ -2,7 +2,8 @@ import React, {useEffect} from 'react';
 import {
     HOME_PAGE,
     FOOD_PAGE,
-    CART_PAGE
+    CART_PAGE,
+    LOGIN_PAGE
 } from 'constants/routes'
 
 import AppBar from '@material-ui/core/AppBar';
@@ -52,7 +53,6 @@ const Header = props => {
                     >
                         <BottomNavigationAction className={classes.colorIcon} value={HOME_PAGE} label="Home" icon={<HomeIcon />} />
                         <BottomNavigationAction className={classes.colorIcon} value={FOOD_PAGE} label="Food" icon={<FastFoodIcon />} />
-
                         <BottomNavigationAction
                             className={classes.colorIcon}
                             value={CART_PAGE}
@@ -63,6 +63,13 @@ const Header = props => {
                                 </Badge>
                             }
                         />
+                        <BottomNavigationAction
+                            className={classes.colorIcon}
+                            value={LOGIN_PAGE}
+                            label="Login"
+                            icon={<FastFoodIcon />}
+                        />
+
                     </BottomNavigation>
                 </Toolbar>
             </AppBar>
