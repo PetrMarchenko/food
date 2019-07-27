@@ -10,22 +10,38 @@ import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import {useStyles} from './stylesComponent';
+import WrapInBadge from 'components/commons/WrapInBadge/component'
 
 const FoodPage = props => {
     const classes = useStyles();
     const {
         fetchFood,
         foods,
+        carts,
         addToCart,
+        editCart
     } = props;
 
     useEffect(() => {
         fetchFood();
     }, [fetchFood]);
 
+    const getCartByIdFood = (id) => {
+        let cartIndex = carts.findIndex(element => element.id == id);
+        return carts[cartIndex];
+    };
+    const countFoodInCart = (id) => {
+        let cart = getCartByIdFood(id);
+        return (typeof(cart) != "undefined") ? cart.count : '';
+    };
     const addFoodToCart = (food) => {
-        console.log('addFoodToCart', food);
-        addToCart(food);
+        let cart = getCartByIdFood(food.id);
+        if (typeof(cart) == "undefined") {
+            addToCart(food);
+        } else {
+            cart.count = cart.count + 1;
+            editCart(cart)
+        }
     };
 
     return (
@@ -50,13 +66,20 @@ const FoodPage = props => {
                                 </CardContent>
                                 <CardActions>
                                     <Chip label={'$' + food.price} color="primary" />
-                                    <Button
-                                        size="small"
-                                        color="primary"
-                                        onClick={ () => addFoodToCart(food) }
+
+                                    <WrapInBadge
+                                        badgeColor="secondary"
+                                        badgeContent={countFoodInCart(food.id)}
                                     >
-                                        Add
-                                    </Button>
+                                        <Button
+                                            size="small"
+                                            color="primary"
+                                            onClick={ () => addFoodToCart(food) }
+                                        >
+                                            Add
+                                        </Button>
+                                    </WrapInBadge>
+
                                 </CardActions>
                             </Card>
                         </Grid>

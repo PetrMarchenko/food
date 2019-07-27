@@ -19,10 +19,6 @@ import {
     editCartRequest
 } from 'api/cartRequest';
 
-import {
-    deleteFoodStore,
-} from 'store/foods/actions';
-
 function* addToCart(action) {
     const { payload } = action;
 
@@ -36,7 +32,6 @@ function* addToCart(action) {
 
         if (response.status >= 201 && response.status <= 201) {
             yield put(addToCartStore(response.data));
-            yield put(deleteFoodStore(response.data));
         } else {
             console.log(response);
         }
