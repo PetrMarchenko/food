@@ -4,6 +4,7 @@ import {fetchCartAction} from "store/carts/actions";
 
 const mapStateToProps = state => ({
     carts: state.cartsReducer.carts,
+    token: state.authReducer.token,
 });
 
 const mapDispatchToProps = {
