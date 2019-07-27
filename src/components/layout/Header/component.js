@@ -16,8 +16,8 @@ import { useStyles } from './useStyles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import history from 'src/history';
-import Badge from '@material-ui/core/Badge';
 import * as PropTypes from 'prop-types';
+import WrapInBadge from 'components/commons/WrapInBadge/component'
 
 const Header = props => {
 
@@ -58,9 +58,12 @@ const Header = props => {
                             value={CART_PAGE}
                             label="Cart"
                             icon={
-                                <Badge color="secondary" badgeContent={carts.length} >
+                                <WrapInBadge
+                                    badgeColor="secondary"
+                                    badgeContent={carts.length}
+                                >
                                     <ShoppingCartIcon />
-                                </Badge>
+                                </WrapInBadge>
                             }
                         />
                         <BottomNavigationAction
