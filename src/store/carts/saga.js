@@ -25,10 +25,7 @@ function* addToCart(action) {
     try {
         /*TODO*/
         payload.count = 1;
-
         const response = yield call(addToCartRequest, payload);
-
-        console.log(response);
 
         if (response.status >= 201 && response.status <= 201) {
             yield put(addToCartStore(response.data));

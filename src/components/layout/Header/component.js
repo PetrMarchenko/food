@@ -2,8 +2,7 @@ import React, {useEffect} from 'react';
 import {
     HOME_PAGE,
     FOOD_PAGE,
-    CART_PAGE,
-    LOGIN_PAGE
+    CART_PAGE
 } from 'constants/routes'
 
 import AppBar from '@material-ui/core/AppBar';
@@ -18,12 +17,13 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import history from 'src/history';
 import * as PropTypes from 'prop-types';
 import WrapInBadge from 'components/commons/WrapInBadge/component'
+import Login from './Login';
 
 const Header = props => {
 
     const {
         carts,
-        fetchCart
+        fetchCart,
     } = props;
 
     useEffect(() => {
@@ -32,7 +32,6 @@ const Header = props => {
     }, [fetchCart]);
 
     const classes = useStyles();
-
     const [value, setValue] = React.useState({HOME_PAGE});
 
     return (
@@ -66,23 +65,18 @@ const Header = props => {
                                 </WrapInBadge>
                             }
                         />
-                        <BottomNavigationAction
-                            className={classes.colorIcon}
-                            value={LOGIN_PAGE}
-                            label="Login"
-                            icon={<FastFoodIcon />}
-                        />
-
                     </BottomNavigation>
+
+                    <Login/>
+
                 </Toolbar>
             </AppBar>
         </div>
     );
-}
+};
 
 Header.propTypes = {
     fetchCart: PropTypes.func,
-    deleteWithCart: PropTypes.func,
     carts: PropTypes.array
 };
 

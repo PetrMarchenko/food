@@ -6,12 +6,14 @@ import HomePage from 'components/screan/HomePage/component';
 import FoodPage from 'components/screan/FoodPage';
 import CartPage from 'components/screan/CartPage';
 import LoginPage from 'components/screan/LoginPage';
+import ProfilePage from 'components/screan/ProfilePage/component';
 
 import {
     HOME_PAGE,
     FOOD_PAGE,
     CART_PAGE,
-    LOGIN_PAGE
+    LOGIN_PAGE,
+    PROFILE_PAGE
 } from 'constants/routes';
 
 export default () => (
@@ -22,6 +24,7 @@ export default () => (
             <Route exact path={ FOOD_PAGE } component={ FoodPage }/>
             <Route exact path={ CART_PAGE } component={ CartPage }/>
             <Route exact path={ LOGIN_PAGE } component={ LoginPage }/>
+            <Route exact path={ PROFILE_PAGE } component={ ProfilePage }/>
         </Switch>
         <Footer/>
     </div>

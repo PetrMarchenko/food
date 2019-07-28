@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    fetchCart: fetchCartAction
+    fetchCart: fetchCartAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeadPage);
