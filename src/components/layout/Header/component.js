@@ -2,8 +2,7 @@ import React, {useEffect} from 'react';
 import {
     HOME_PAGE,
     FOOD_PAGE,
-    CART_PAGE,
-    LOGIN_PAGE
+    CART_PAGE
 } from 'constants/routes'
 
 import AppBar from '@material-ui/core/AppBar';
@@ -18,59 +17,19 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import history from 'src/history';
 import * as PropTypes from 'prop-types';
 import WrapInBadge from 'components/commons/WrapInBadge/component'
-
-import Button from '@material-ui/core/Button';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import Login from './Login';
 
 const Header = props => {
 
     const {
         carts,
         fetchCart,
-        token
     } = props;
 
     useEffect(() => {
         fetchCart();
         console.log('useEffect fetchCart');
     }, [fetchCart]);
-
-    const loginMenu = () =>  {
-        if (token.length > 0 ) {
-            return <div>
-                <AccountCircle
-                    aria-controls="simple-menu"
-                    aria-haspopup="true"
-                    onClick={handleClick}
-                    color="inherit"
-                >
-                </AccountCircle>
-                <Menu
-                    id="simple-menu"
-                    anchorEl={anchorEl}
-                    keepMounted
-                    open={Boolean(anchorEl)}
-                    onClose={handleClose}
-                >
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
-                </Menu>
-            </div>
-        }
-
-        return <Button onClick={()=>{history.push(LOGIN_PAGE);}} color="inherit">Login</Button>
-
-    };
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    function handleClick(event) {
-        setAnchorEl(event.currentTarget);
-    }
-    function handleClose() {
-        setAnchorEl(null);
-    }
-
 
     const classes = useStyles();
     const [value, setValue] = React.useState({HOME_PAGE});
@@ -106,10 +65,9 @@ const Header = props => {
                                 </WrapInBadge>
                             }
                         />
-
                     </BottomNavigation>
 
-                    {loginMenu()}
+                    <Login/>
 
                 </Toolbar>
             </AppBar>
@@ -119,7 +77,6 @@ const Header = props => {
 
 Header.propTypes = {
     fetchCart: PropTypes.func,
-    deleteWithCart: PropTypes.func,
     carts: PropTypes.array
 };
 

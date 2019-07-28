@@ -4,11 +4,10 @@ import {fetchCartAction} from "store/carts/actions";
 
 const mapStateToProps = state => ({
     carts: state.cartsReducer.carts,
-    token: state.authReducer.token,
 });
 
 const mapDispatchToProps = {
-    fetchCart: fetchCartAction
+    fetchCart: fetchCartAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeadPage);
