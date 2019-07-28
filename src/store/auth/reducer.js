@@ -4,7 +4,8 @@ import {
 } from './actions';
 
 const INIT = {
-  token: ''
+  token: '',
+  role: 'guest'
 };
 
 export default function foodsReducer(state = INIT, action) {
@@ -15,13 +16,15 @@ export default function foodsReducer(state = INIT, action) {
             console.log('ADD_TOKEN_TO_STORE', payload);
             return {
                 ...state,
-                token: payload.token
+                token: payload.token,
+                role: 'user'
             };
         case DELETE_TOKEN_WITH_STORE:
             console.log('DELETE_TOKEN_WITH_STORE', payload);
             return {
                 ...state,
-                token: ''
+                token: '',
+                role: 'guest'
             };
 
         default:
