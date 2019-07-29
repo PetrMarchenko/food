@@ -5,17 +5,26 @@ const guestPermissions = [
     HOME_PAGE,
     LOGIN_PAGE
 ];
+
+
 const userPermissions = [
     ...guestPermissions,
     CART_PAGE,
     FOOD_PAGE,
     PROFILE_PAGE
-];
+].filter((el) => [
+    LOGIN_PAGE
+].indexOf(el));
+
 
 const adminPermissions = [
     ...userPermissions,
     ADMIN_USERS_PAGE,
-];
+].filter((el) => [
+    LOGIN_PAGE
+].indexOf(el));
+
+
 
 
 export const rolePermissions = [

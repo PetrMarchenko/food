@@ -3,7 +3,7 @@ import LogInPage from './component';
 import { logInAction } from 'store/auth/actions';
 
 const mapStateToProps = state => ({
-    token: state.authReducer.token,
+
 });
 
 const mapDispatchToProps = {
