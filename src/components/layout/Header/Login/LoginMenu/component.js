@@ -2,7 +2,6 @@ import React from 'react';
 import {
     HOME_PAGE,
     PROFILE_PAGE,
-    LOGIN_PAGE,
     ADMIN_USERS_PAGE
 } from 'constants/routes'
 
@@ -12,7 +11,6 @@ import {
 
 import history from 'src/history';
 import * as PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';

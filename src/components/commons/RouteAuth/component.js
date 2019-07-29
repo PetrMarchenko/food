@@ -1,5 +1,4 @@
 import React from 'react';
-import {CART_PAGE, FOOD_PAGE, HOME_PAGE, LOGIN_PAGE, PROFILE_PAGE, ADMIN_USERS_PAGE} from "constants/routes";
 import LoginPage from "components/screan/LoginPage";
 import * as PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
