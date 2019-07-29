@@ -90,7 +90,8 @@ export default () => (
             <RoutAuth
                 exact
                 path = { LOGIN_PAGE }
-                component={LoginPage}
+                component={ LoginPage }
+                redirect = { HomePage }
             />
             <RoutAuth
                 exact

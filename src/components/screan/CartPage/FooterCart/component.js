@@ -14,22 +14,11 @@ const FooterCart = props => {
         carts
     } = props;
 
-    const [total, setTotal] = React.useState(0);
-
     const getTotal = (carts) =>  {
-        const newTotal = carts.reduce(function(sum, current) {
+        return carts.reduce(function(sum, current) {
             return sum + (current.price * current.count);
         }, 0);
-        setTotal(newTotal);
     };
-
-    useEffect(() => {
-        getTotal(carts);
-    }, [getTotal]);
-
-    if (total === 0) {
-        return '';
-    }
 
     return (
         <ListItem button>
@@ -37,7 +26,7 @@ const FooterCart = props => {
                 <TextField
                     id="standard-read-only-input"
                     label="total"
-                    value={ total }
+                    value={ getTotal(carts) }
                     className={classes.textField}
                     margin="normal"
                     InputProps={{

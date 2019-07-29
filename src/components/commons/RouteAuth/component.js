@@ -11,28 +11,31 @@ const RoutAuth = props => {
         userRole,
         path,
         component,
+        redirect
     } = props;
 
     const check = () => {
 
         const role = userRole;
         const permissions = rolePermissions;
+        const redirectPage = (redirect) ? redirect : LoginPage;
 
-        console.log(role);
 
         const index = permissions.findIndex(element => element.role === role);
 
         if (index < 0) {
-            return LoginPage;
+            return redirectPage;
         }
 
         const permission = permissions[index];
+
+
         const can = permission.page.findIndex(element => element === path);
         if (can >= 0) {
             return component;
         }
 
-        return LoginPage
+        return redirectPage
     };
 
 
