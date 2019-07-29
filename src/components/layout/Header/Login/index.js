@@ -4,6 +4,7 @@ import {logOutAction} from "store/auth/actions";
 
 const mapStateToProps = state => ({
     token: state.authReducer.token,
+    userRole: state.authReducer.role,
 });
 
 const mapDispatchToProps = {

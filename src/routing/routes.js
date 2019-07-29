@@ -7,15 +7,18 @@ import FoodPage from 'components/screan/FoodPage';
 import CartPage from 'components/screan/CartPage';
 import LoginPage from 'components/screan/LoginPage';
 import ProfilePage from 'components/screan/ProfilePage/component';
+import AdminUsersPage from 'components/screan/Admin/UsersPage/component';
 import {
     HOME_PAGE,
     FOOD_PAGE,
     CART_PAGE,
     LOGIN_PAGE,
-    PROFILE_PAGE
+    PROFILE_PAGE,
+    ADMIN_USERS_PAGE
 } from 'constants/routes';
 
 import Auth from 'components/commons/Auth';
+import RoutAuth from 'components/commons/RouteAuth';
 
 //
 // export const GUEST_ROLE = 'guest';
@@ -69,37 +72,71 @@ export default () => (
     <div>
         <Header/>
         <Switch>
-            <Route
+            <RoutAuth
                 exact
-                path={ HOME_PAGE }
-                // component={ check(HOME_PAGE , HomePage) }
-                component={ () => (<Auth url={HOME_PAGE}>{<HomePage/>}</Auth>) }
+                path = { HOME_PAGE }
+                component={HomePage}
             />
-            <Route
+            <RoutAuth
                 exact
-                path={ FOOD_PAGE }
-                // component={ check(FOOD_PAGE , FoodPage) }
-                component={() => (<Auth url={FOOD_PAGE}>{<FoodPage/>}</Auth>)}
+                path = { FOOD_PAGE }
+                component={FoodPage}
             />
-            <Route
+            <RoutAuth
                 exact
-                path={ CART_PAGE }
-                // component={ check(CART_PAGE , CartPage) }
-                component={() => (<Auth url={CART_PAGE}>{<CartPage/>}</Auth>)}
+                path = { CART_PAGE }
+                component = {CartPage}
             />
-            <Route
+            <RoutAuth
                 exact
-                path={ LOGIN_PAGE }
-                // component={ check(LOGIN_PAGE , LoginPage) }
-                component={() => (<Auth url={LOGIN_PAGE}>{<LoginPage/>}</Auth>)}
+                path = { LOGIN_PAGE }
+                component={LoginPage}
             />
-            <Route
+            <RoutAuth
                 exact
                 path={ PROFILE_PAGE }
-                // component={ check(PROFILE_PAGE , ProfilePage) }
-                component={() => (<Auth url={PROFILE_PAGE}>{<ProfilePage/>}</Auth>)}
+                component={ProfilePage}
+            />
+            <RoutAuth
+                exact
+                path={ ADMIN_USERS_PAGE }
+                component={AdminUsersPage}
             />
         </Switch>
+
+
+        {/*<Switch>*/}
+        {/*    <Route*/}
+        {/*        exact*/}
+        {/*        path={ HOME_PAGE }*/}
+        {/*        // component={ check(HOME_PAGE , HomePage) }*/}
+        {/*        component={ () => (<Auth url={HOME_PAGE}>{<HomePage/>}</Auth>) }*/}
+        {/*    />*/}
+        {/*    <Route*/}
+        {/*        exact*/}
+        {/*        path={ FOOD_PAGE }*/}
+        {/*        // component={ check(FOOD_PAGE , FoodPage) }*/}
+        {/*        component={() => (<Auth url={FOOD_PAGE}>{<FoodPage/>}</Auth>)}*/}
+        {/*    />*/}
+        {/*    <Route*/}
+        {/*        exact*/}
+        {/*        path={ CART_PAGE }*/}
+        {/*        // component={ check(CART_PAGE , CartPage) }*/}
+        {/*        component={() => (<Auth url={CART_PAGE}>{<CartPage/>}</Auth>)}*/}
+        {/*    />*/}
+        {/*    <Route*/}
+        {/*        exact*/}
+        {/*        path={ LOGIN_PAGE }*/}
+        {/*        // component={ check(LOGIN_PAGE , LoginPage) }*/}
+        {/*        component={() => (<Auth url={LOGIN_PAGE}>{<LoginPage/>}</Auth>)}*/}
+        {/*    />*/}
+        {/*    <Route*/}
+        {/*        exact*/}
+        {/*        path={ PROFILE_PAGE }*/}
+        {/*        // component={ check(PROFILE_PAGE , ProfilePage) }*/}
+        {/*        component={() => (<Auth url={PROFILE_PAGE}>{<ProfilePage/>}</Auth>)}*/}
+        {/*    />*/}
+        {/*</Switch>*/}
         <Footer/>
     </div>
 );

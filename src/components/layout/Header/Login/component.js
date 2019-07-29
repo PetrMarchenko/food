@@ -2,7 +2,8 @@ import React from 'react';
 import {
     HOME_PAGE,
     PROFILE_PAGE,
-    LOGIN_PAGE
+    LOGIN_PAGE,
+    ADMIN_USERS_PAGE
 } from 'constants/routes'
 
 import history from 'src/history';
@@ -16,7 +17,8 @@ const Login = props => {
 
     const {
         logOut,
-        token
+        token,
+        userRole
     } = props;
 
 
@@ -38,7 +40,7 @@ const Login = props => {
     }
 
     if (token.length > 0 ) {
-        return <div>
+        return (<div>
             <AccountCircle
                 aria-controls="simple-menu"
                 aria-haspopup="true"
@@ -54,9 +56,10 @@ const Login = props => {
                 onClose={handleClose}
             >
                 <MenuItem value = { PROFILE_PAGE } onClick={handleClose}>Profile</MenuItem>
+                if (userRole == 'admin') {<MenuItem value = { ADMIN_USERS_PAGE } onClick={handleClose}>Users</MenuItem>}
                 <MenuItem value = { HOME_PAGE } onClick={onClickLogOut}>Logout</MenuItem>
             </Menu>
-        </div>
+        </div>)
     }
 
     return <div><Button onClick={()=>{history.push(LOGIN_PAGE)}} color="inherit">Login</Button></div>
