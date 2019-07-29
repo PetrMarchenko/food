@@ -2,7 +2,7 @@ import {
     ADD_TOKEN_TO_STORE,
     DELETE_TOKEN_WITH_STORE
 } from './actions';
-import {GUEST_ROLE,  ADMIN_ROLE} from "constants/auth/role";
+import {GUEST_ROLE,  ADMIN_ROLE, USER_ROLE} from "constants/auth/role";
 
 
 const INIT = {
@@ -19,7 +19,7 @@ export default function foodsReducer(state = INIT, action) {
             return {
                 ...state,
                 token: payload.token,
-                role: ADMIN_ROLE 
+                role: USER_ROLE
             };
         case DELETE_TOKEN_WITH_STORE:
             console.log('DELETE_TOKEN_WITH_STORE', payload);
