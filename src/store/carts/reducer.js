@@ -20,7 +20,7 @@ export default function foodsReducer(state = INIT, action) {
                 carts: payload
             };
         case DELETE_WITH_CART_STORE:
-            const carts = [...state.carts.filter(obj => obj.id!= payload.id )];
+            const carts = [...state.carts.filter(obj => obj.id !== payload.id )];
             return {
                 ...state,
                 carts: carts

@@ -21,7 +21,7 @@ const ItemCart = props => {
 
     const convertToInt = (value, defaultValue) => {
         const count = parseInt(value);
-        return (count == value)
+        return (count === value)
             ? count
             : count > 0 ? count : defaultValue;
     };

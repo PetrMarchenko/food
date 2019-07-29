@@ -1,4 +1,4 @@
-import React, {useState, Component, useEffect} from 'react';
+import React, { useEffect } from 'react';
 import * as PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import CardActions from '@material-ui/core/CardActions';
@@ -27,7 +27,7 @@ const FoodPage = props => {
     }, [fetchFood]);
 
     const getCartByIdFood = (id) => {
-        let cartIndex = carts.findIndex(element => element.id == id);
+        let cartIndex = carts.findIndex(element => element.id === id);
         return carts[cartIndex];
     };
     const countFoodInCart = (id) => {

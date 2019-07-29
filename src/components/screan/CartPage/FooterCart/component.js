@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react';
+import React, {useEffect} from 'react';
 
 import {useStyles} from './stylesComponent';
 import ListItem from '@material-ui/core/ListItem';
@@ -27,7 +27,7 @@ const FooterCart = props => {
         getTotal(carts);
     }, [getTotal]);
 
-    if (total == 0) {
+    if (total === 0) {
         return '';
     }
 
