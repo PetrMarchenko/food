@@ -1,7 +1,6 @@
-import request from 'helpers/request';
 import { API_URL } from 'constants/apiconfig';
 
-const LogInURL = `${ API_URL }login`;
+const LogInURL = `${API_URL}login`;
 
 
 // export const logInRequest = payload => request({
@@ -15,10 +14,10 @@ const LogInURL = `${ API_URL }login`;
 
 
 export function logInRequest(data) {
-    return {
-        status: 200,
-        data: {
-            token: 'lo-lo-lo'
-        }
+  return {
+    status: 200,
+    data  : {
+      token: 'lo-lo-lo'
     }
+  };
 }

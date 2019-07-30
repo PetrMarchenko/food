@@ -14,10 +14,10 @@ const target = document.querySelector('#root');
 const store = configureStore(rootReducer, rootSaga, loadState());
 
 render(
-    <Provider store={ store }>
-        <Router history={ history }>
-            <Route>{ routes }</Route>
-        </Router>
-    </Provider>,
-    target
+  <Provider store={store}>
+    <Router history={history}>
+      <Route>{routes}</Route>
+    </Router>
+  </Provider>,
+  target
 );

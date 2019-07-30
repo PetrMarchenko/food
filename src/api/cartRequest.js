@@ -1,34 +1,33 @@
 import request from 'helpers/request';
 import { API_URL } from 'constants/apiconfig';
 
-const fetchCartURL = `${ API_URL }carts`;
-const addToCartsURL = `${ API_URL }carts`;
-const editCartsURL = `${ API_URL }carts/`;
-const deleteWithCartURL = `${ API_URL }carts/`;
+const fetchCartURL = `${API_URL}carts`;
+const addToCartsURL = `${API_URL}carts`;
+const editCartsURL = `${API_URL}carts/`;
+const deleteWithCartURL = `${API_URL}carts/`;
 
 
 export const fetchCartRequest = payload => request({
-    method: 'get',
-    url: fetchCartURL,
+  method: 'get',
+  url   : fetchCartURL,
 });
 
 export const addToCartRequest = payload => request({
-    method: 'post',
-    url: addToCartsURL,
-    data: payload
+  method: 'post',
+  url   : addToCartsURL,
+  data  : payload
 });
 
 export const editCartRequest = payload => request({
-    method: 'put',
-    url: editCartsURL + payload.id,
-    data: payload
+  method: 'put',
+  url   : editCartsURL + payload.id,
+  data  : payload
 });
 
 export const deleteWithCartRequest = payload => request({
-    method: 'delete',
-    url: deleteWithCartURL + payload.id,
+  method: 'delete',
+  url   : deleteWithCartURL + payload.id,
 });
-
 
 
 // export function fetchAll() {
