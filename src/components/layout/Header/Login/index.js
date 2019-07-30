@@ -2,10 +2,9 @@ import { connect } from 'react-redux';
 import Login from './component';
 
 const mapStateToProps = state => ({
-    token: state.authReducer.token,
+  token: state.authReducer.token,
 });
 
-const mapDispatchToProps = {
-};
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

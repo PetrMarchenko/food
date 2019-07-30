@@ -8,30 +8,30 @@ import history from '../history';
 const sagaMiddleware = createSagaMiddleware();
 
 export const configureStore = (reducer, sagas, initialState) => {
-    const middlewares = applyMiddleware(
-        sagaMiddleware,
-        routerMiddleware(history),
-    );
+  const middlewares = applyMiddleware(
+    sagaMiddleware,
+    routerMiddleware(history),
+  );
 
-    const devtools =
-        typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__
-            ? window.__REDUX_DEVTOOLS_EXTENSION__()
-            : f => f;
+  const devtools =
+    typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__
+      ? window.__REDUX_DEVTOOLS_EXTENSION__()
+      : f => f;
 
-    const store = createStore(
-        reducer,
-        initialState,
-        compose(middlewares, devtools),
-    );
+  const store = createStore(
+    reducer,
+    initialState,
+    compose(middlewares, devtools),
+  );
 
-    store.subscribe(() => {
-        const state = store.getState();
+  store.subscribe(() => {
+    const state = store.getState();
 
-        saveState(stateToStorageSelector(state));
-    });
+    saveState(stateToStorageSelector(state));
+  });
 
-    sagaMiddleware.run(sagas);
-    serviceWorker.register();
+  sagaMiddleware.run(sagas);
+  serviceWorker.register();
 
-    return store;
+  return store;
 };

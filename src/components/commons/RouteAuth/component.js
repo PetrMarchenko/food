@@ -1,56 +1,53 @@
 import React from 'react';
-import LoginPage from "components/screan/LoginPage";
+import LoginPage from 'components/screan/LoginPage';
 import * as PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 
-import {rolePermissions} from "constants/auth/permissions";
+import { rolePermissions } from 'constants/auth/permissions';
 
 
 const RoutAuth = props => {
-    const {
-        userRole,
-        path,
-        component,
-        redirect
-    } = props;
+  const {
+    userRole,
+    path,
+    component,
+    redirect
+  } = props;
 
-    const check = () => {
+  const check = () => {
 
-        const role = userRole;
-        const permissions = rolePermissions;
-        const redirectPage = (redirect) ? redirect : LoginPage;
-
-
-        const index = permissions.findIndex(element => element.role === role);
-
-        if (index < 0) {
-            return redirectPage;
-        }
-
-        const permission = permissions[index];
+    const role = userRole;
+    const permissions = rolePermissions;
+    const redirectPage = (redirect) ? redirect : LoginPage;
 
 
-        const can = permission.page.findIndex(element => element === path);
-        if (can >= 0) {
-            return component;
-        }
+    const index = permissions.findIndex(element => element.role === role);
 
-        return redirectPage
-    };
+    if (index < 0) {
+      return redirectPage;
+    }
+
+    const permission = permissions[index];
 
 
+    const can = permission.page.findIndex(element => element === path);
+    if (can >= 0) {
+      return component;
+    }
 
-    return (
-        <Route
-            // exact
-            // path={ path }
-            component={ check() }
-        />
-    );
+    return redirectPage;
+  };
+
+
+  return (
+    <Route
+      component={check()}
+    />
+  );
 };
 
 RoutAuth.propTypes = {
-    userRole: PropTypes.string
+  userRole: PropTypes.string
 };
 
 export default RoutAuth;
