@@ -13,10 +13,20 @@ function* fetchUserAdmin(action) {
   try {
     const response = yield call(fetchUserRequest, payload);
 
-    console.log(response);
-
     if (response.status >= 200 && response.status <= 200) {
-      yield put(loadUserAdminStore(response.data));
+
+      /*
+      * TODO SORT
+      * */
+      let users = response.data;
+      const isDesc = payload.orderBy === 'desc' ? -1 : 1;
+      let usersSort = users.sort(function(a, b){
+        if(a[payload.order] < b[payload.order]) { return isDesc; }
+        if(a[payload.order] > b[payload.order]) { return -1 * isDesc; }
+        return 0;
+      });
+
+      yield put(loadUserAdminStore(usersSort));
     } else {
       console.log(response);
     }
