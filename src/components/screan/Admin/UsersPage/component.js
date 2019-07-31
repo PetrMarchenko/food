@@ -7,6 +7,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { useStyles } from './stylesComponent';
 
+import TableSortLabel from '@material-ui/core/TableSortLabel';
+
 const UsersPage = props => {
 
   const classes = useStyles();
@@ -25,7 +27,22 @@ const UsersPage = props => {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell align="left">Id</TableCell>
+            <TableCell align="left">
+
+              <TableSortLabel
+                active={true}
+                direction={'desc'}
+                onClick={() => {console.log('lo-lo')}}
+              >
+                ID
+                {/*{orderBy === row.id ? (*/}
+                  <span className={classes.visuallyHidden}>
+                  {/*{'desc' === 'desc' ? 'sorted descending' : 'sorted ascending'}*/}
+                </span>
+                {/*) : null}*/}
+              </TableSortLabel>
+
+            </TableCell>
             <TableCell align="left">Name</TableCell>
             <TableCell align="left">Age</TableCell>
             <TableCell align="left">Role</TableCell>

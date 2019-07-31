@@ -3,8 +3,8 @@ import { GUEST_ROLE, ADMIN_ROLE } from 'constants/auth/role';
 
 
 const INIT = {
-  token: '',
-  role : GUEST_ROLE
+  token: 'ADMIN_ROLE',
+  role : ADMIN_ROLE
 };
 
 export default function foodsReducer(state = INIT, action) {
