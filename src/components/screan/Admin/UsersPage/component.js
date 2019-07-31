@@ -3,7 +3,9 @@ import UserTable from './UserTable';
 
 const UsersPage = props => {
   return (
-    <UserTable/>
+    <UserTable
+        edit = {[]}
+    />
   );
 };
 

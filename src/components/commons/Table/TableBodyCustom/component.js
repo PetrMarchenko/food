@@ -1,25 +1,28 @@
 import React from 'react';
 import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
+import TableRowCustom from 'components/commons/Table/TableRowCustom/component';
 
 const TableBodyCustom = props => {
   const {
     columns,
-    rows
+    rows,
+    edit  
   } = props;
+
+  console.log(edit.indexOf(1), edit);
 
   return (
     <TableBody>
-      {rows.map(row => (
-        <TableRow key={row.id}>
-          {
-            columns.map(column => (
-              <TableCell key={column.id}  align="left"> {row[column.id]}</TableCell>
-            ))
-          }
-        </TableRow>
-      ))}
+      {
+        rows.map(row => (
+          <TableRowCustom
+              key={row.id}
+              columns={columns}
+              row={row}
+              isEdit = {edit.indexOf(row.id) >= 0 ? true : false}
+          />
+        ))
+      }
     </TableBody>
   );
 };
