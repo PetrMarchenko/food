@@ -9,13 +9,21 @@ const TableBodyCustom = props => {
     rows
   } = props;
 
+
+  const getComponent = (row, column) => {
+    if (column.type === 'object') {
+      return column.component(row);
+    }
+    return row[column.id]
+  };
+
   return (
     <TableBody>
       {rows.map(row => (
         <TableRow key={row.id}>
           {
             columns.map(column => (
-              <TableCell key={column.id}  align="left"> {row[column.id]}</TableCell>
+              <TableCell key={column.id}  align="left"> {getComponent(row, column)}</TableCell>
             ))
           }
         </TableRow>
@@ -23,5 +31,7 @@ const TableBodyCustom = props => {
     </TableBody>
   );
 };
+
+
 
 export default TableBodyCustom;
