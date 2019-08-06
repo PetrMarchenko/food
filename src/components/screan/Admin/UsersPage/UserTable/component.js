@@ -79,6 +79,7 @@ const UserTable = props => {
         <TableBodyCustom
           columns = { columns }
           rows = { users }
+          editList = { editList }
         />
       </Table>
     </Paper>

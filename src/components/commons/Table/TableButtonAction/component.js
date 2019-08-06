@@ -9,7 +9,8 @@ const TableButtonAction = props => {
   const {
     isEdit,
     row,
-    onClickOpen
+    onClickOpen,
+    onClickSave,
   } = props;
 
   const [open, setOpen] = React.useState(isEdit);
@@ -18,6 +19,13 @@ const TableButtonAction = props => {
     setOpen((open !== true));
     onClickOpen(row);
   }
+
+  function handleRequestClose(row) {
+    setOpen((open !== true));
+    onClickOpen(row);
+    onClickSave();
+  }
+
 
   if (open === false) {
     return (
@@ -40,9 +48,9 @@ const TableButtonAction = props => {
           color="secondary"
           aria-label="add"
           className={classes.margin}
-          onClick={handleRequestOpen.bind(this, row)}
+          onClick={handleRequestClose.bind(this, row)}
         >
-          <AddIcon/>
+          Save
         </Fab>
         <Fab
           size="small"
@@ -51,7 +59,7 @@ const TableButtonAction = props => {
           className={classes.margin}
           onClick={handleRequestOpen.bind(this, row)}
         >
-          <AddIcon/>
+          Cancel
         </Fab>
       </div>
     )
