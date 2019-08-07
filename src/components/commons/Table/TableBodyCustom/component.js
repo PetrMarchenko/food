@@ -1,37 +1,25 @@
 import React from 'react';
 import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
+import TableRowCustom from 'components/commons/Table/TableRowCustom/component';
 
 const TableBodyCustom = props => {
+
   const {
     columns,
-    rows
+    rows,
   } = props;
 
-
-  const getComponent = (row, column) => {
-    if (column.type === 'object') {
-      return column.component(row);
-    }
-    return row[column.id]
-  };
-
   return (
-    <TableBody>
-      {rows.map(row => (
-        <TableRow key={row.id}>
-          {
-            columns.map(column => (
-              <TableCell key={column.id}  align="left"> {getComponent(row, column)}</TableCell>
-            ))
-          }
-        </TableRow>
-      ))}
-    </TableBody>
+      <TableBody>
+        {rows.map(row => (
+            <TableRowCustom
+                key = {row.id}
+                row={row}
+                columns={columns}
+            />
+        ))}
+      </TableBody>
   );
 };
-
-
 
 export default TableBodyCustom;

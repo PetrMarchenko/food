@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Table from '@material-ui/core/Table';
 import Paper from '@material-ui/core/Paper';
 import TableHeadCustom from 'components/commons/Table/TableHeadCustom/component';
 import TableBodyCustom from 'components/commons/Table/TableBodyCustom/component';
 import { useStyles } from 'components/screan/Admin/UsersPage/UserTable/stylesComponent';
-import TableButtonAction from 'components/commons/Table/TableButtonAction/component';
 
 const UserTable = props => {
 
@@ -16,33 +15,21 @@ const UserTable = props => {
   } = props;
 
 
-  const action = function(row) {
-    return <TableButtonAction
-      isEdit = {(editList.indexOf(row.id) >= 0)}
-      row = {row}
-      onClickOpen = {setEdit}
-    />;
+  const onClickOpen = (row) => {console.log('open', row)};
+  const onClickSave = (values) => {console.log('save', values)};
+  const onClickCancel = (row) => {console.log('cancel', row)};
+  const action = {
+    open : onClickOpen,
+    save: onClickSave,
+    cancel: onClickCancel
   };
-  const [editList, setEditRow] = useState([1,3]);
-  const setEdit = (row) => {
-    const rowId = row.id;
-    const newEditList = [...editList];
-    const index = newEditList.indexOf(rowId);
-    if (index<0) {
-      newEditList.push(rowId);
-    } else {
-      newEditList.splice(index, 1);
-    }
-    setEditRow(newEditList);
-  };
-
   const columns = [
     { id: 'id', label: 'ID', type: 'text' },
-    { id: 'name', label: 'Name', type: 'text' },
-    { id: 'age', label: 'Age', type: 'text' },
+    { id: 'name', label: 'Name', type: 'text', isEdit: true },
+    { id: 'age', label: 'Age', type: 'text', isEdit: true },
     { id: 'role', label: 'User role', type: 'text' },
     { id: 'position', label: 'Position', type: 'text' },
-    { id: 'action', label: 'Action', type: 'object' , component: action},
+    { id: 'action', label: 'Action', type: 'object', action: action},
   ];
   const orderBy = 'id';
   const order = 'desc';
