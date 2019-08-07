@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-
 import TextField from '@material-ui/core/TextField';
 import {useStyles} from "components/commons/Table/TableHeadCustom/stylesComponent";
 import TableButtonAction from 'components/commons/Table/TableButtonAction/component';
@@ -9,43 +8,45 @@ import TableButtonAction from 'components/commons/Table/TableButtonAction/compon
 const TableRowCustom = props => {
   const {
     columns,
-    row,
-    isEdit
+    row
   } = props;
 
+  const getValues =  () => {
+    let map = {};
+    columns.map(column => {
+      map[column.id] = row[column.id];
+    });
+    console.log(map);
+    return map;
+  };
+
   const classes = useStyles();
-  const [values, setValues] = React.useState({
-    id: row['id'],
-    name: row['name'],
-    age: row['age'],
-    role: row['role'],
-    position: row['position']
-  });
+  const [values, setValues] = React.useState(getValues());
   const handleChange = name => event => {
     console.log(values);
     setValues({...values, [name]: event.target.value});
   };
 
+  const [isOpen, setOpen] = useState(false);
+  const handleOnClick = () => {
+    setOpen(!isOpen);
+  };
 
   const getComponent = (row, column) => {
-
-    // console.log(row);
-
     if (column.type === 'object') {
-      // return column.component(row);
       return <TableButtonAction
-        isEdit = {isEdit}
         row = {row}
-        onClickOpen = {() => {console.log('open')}}
-        onClickSave = {() => {console.log('save', values)}}
+        onClickOpen = {() => {handleOnClick(); column.action.open(row)}}
+        onClickSave = {() => {handleOnClick(); column.action.save(values)}}
+        onClickCancel = {() => {handleOnClick(); column.action.cancel(row)}}
       />;
     }
 
-    if (column.id === 'id') {
+    if (!column.isEdit) {
       return row[column.id]
     }
 
-    if (isEdit && column.type === 'text') {
+    if (isOpen && column.type === 'text') {
       return (
         <TextField
           id="standard-name"
@@ -72,6 +73,5 @@ const TableRowCustom = props => {
   );
 
 };
-
 
 export default TableRowCustom;

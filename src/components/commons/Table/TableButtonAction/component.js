@@ -2,27 +2,30 @@ import React from 'react';
 import { useStyles } from './stylesComponent';
 import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
-import AddIcon from '@material-ui/icons/Add';
 
 const TableButtonAction = props => {
   const classes = useStyles();
   const {
-    isEdit,
     row,
     onClickOpen,
     onClickSave,
+    onClickCancel,
   } = props;
 
-  const [open, setOpen] = React.useState(isEdit);
+  const [open, setOpen] = React.useState(false);
 
   function handleRequestOpen(row) {
     setOpen((open !== true));
     onClickOpen(row);
   }
 
-  function handleRequestClose(row) {
+  function handleRequestCancel(row) {
     setOpen((open !== true));
-    onClickOpen(row);
+    onClickCancel();
+  }
+
+  function handleRequestSave(row) {
+    setOpen((open !== true));
     onClickSave();
   }
 
@@ -48,7 +51,7 @@ const TableButtonAction = props => {
           color="secondary"
           aria-label="add"
           className={classes.margin}
-          onClick={handleRequestClose.bind(this, row)}
+          onClick={handleRequestSave.bind(this, row)}
         >
           Save
         </Fab>
@@ -57,7 +60,7 @@ const TableButtonAction = props => {
           color="secondary"
           aria-label="add"
           className={classes.margin}
-          onClick={handleRequestOpen.bind(this, row)}
+          onClick={handleRequestCancel.bind(this, row)}
         >
           Cancel
         </Fab>
