@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import UsersPage from './component';
-import { fetchUserAdminAction } from 'store/admin/users/actions';
+import { fetchUserAdminAction, editUserAdminAction } from 'store/admin/users/actions';
 
 
 const mapStateToProps = state => ({
@@ -9,6 +9,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   fetchUserAdmin: fetchUserAdminAction,
+  editUserAdmin: editUserAdminAction
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersPage);

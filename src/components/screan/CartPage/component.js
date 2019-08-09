@@ -16,7 +16,6 @@ const CartPage = props => {
 
   useEffect(() => {
     fetchCart();
-    console.log('useEffect fetchCart');
   }, [fetchCart]);
 
   return (

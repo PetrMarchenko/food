@@ -24,7 +24,6 @@ const Header = props => {
 
   useEffect(() => {
     fetchCart();
-    console.log('useEffect fetchCart');
   }, [fetchCart]);
 
   const classes = useStyles();

@@ -37,7 +37,6 @@ const ItemCart = props => {
   };
 
   const deleteFoodWithCart = (food) => {
-    console.log('deleteFoodFromCart', food);
     deleteWithCart(food);
   };
 

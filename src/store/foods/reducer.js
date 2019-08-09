@@ -9,7 +9,6 @@ export default function foodsReducer(state = INIT, action) {
 
   switch (type) {
     case LOAD_FOOD_TO_STORE:
-      console.log('LOAD_FOOD_TO_STORE', payload);
       return {
         ...state,
         foods: payload
