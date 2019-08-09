@@ -12,14 +12,12 @@ export default function foodsReducer(state = INIT, action) {
 
   switch (type) {
     case ADD_TOKEN_TO_STORE:
-      console.log('ADD_TOKEN_TO_STORE', payload);
       return {
         ...state,
         token: payload.token,
         role : ADMIN_ROLE
       };
     case DELETE_TOKEN_WITH_STORE:
-      console.log('DELETE_TOKEN_WITH_STORE', payload);
       return {
         ...state,
         token: '',

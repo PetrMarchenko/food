@@ -10,11 +10,12 @@ const UserTable = props => {
 
   const {
     fetchUserAdmin,
+    editUserAdmin,
     users,
   } = props;
 
   const onClickOpen = (row) => {console.log('open', row)};
-  const onClickSave = (values) => {console.log('save', values)};
+  const onClickSave = (values) => {editUserAdmin(values); console.log('save', values)};
   const onClickCancel = (row) => {console.log('cancel', row)};
 
   const action = {

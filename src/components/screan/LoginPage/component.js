@@ -44,7 +44,6 @@ const LoginPage = props => {
       'password'  : password,
       'rememberMe': rememberMe
     });
-    console.log('onClickSubmit', email, password, rememberMe);
   };
 
   return (

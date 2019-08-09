@@ -26,7 +26,6 @@ const LoginMenu = props => {
   function handleClose(event) {
     setAnchorEl(null);
     const url = event ? event.target.getAttribute('value') : null;
-    console.log(url);
     if (url !== null) {
       history.push(url);
     }
